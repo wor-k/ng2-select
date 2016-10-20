@@ -110,13 +110,12 @@ let styles = `
      [offClick]="clickedOutside"
      class="ui-select-container dropdown open">
     <div [ngClass]="{'ui-disabled': disabled}"></div>
-    <div class="ui-select-match"
-         *ngIf="!inputMode">
+    <div class="ui-select-match">
       <span tabindex="-1"
-          class="btn btn-default btn-secondary form-control ui-select-toggle"
+          class="btn btn-default btn-primary form-control ui-select-toggle"
           (click)="matchClick($event)"
           style="outline: 0;">
-        <span *ngIf="active.length <= 0" class="ui-select-placeholder text-muted">{{placeholder}}</span>
+        <span *ngIf="active.length <= 0" class="ui-select-placeholder">{{placeholder}}</span>
         <span *ngIf="active.length > 0" class="ui-select-match-text pull-left"
               [ngClass]="{'ui-select-allow-clear': allowClear && active.length > 0}"
               [innerHTML]="sanitize(active[0].text)"></span>
@@ -133,10 +132,11 @@ let styles = `
            [disabled]="disabled"
            class="form-control ui-select-search"
            *ngIf="inputMode"
-           placeholder="{{active.length <= 0 ? placeholder : ''}}">
+           placeholder="{{active.length <= 0 ? placeholder : ''}}"
+           style="position: absolute; margin-top: 5px;">
      <!-- options template -->
-     <ul *ngIf="optionsOpened && options && options.length > 0 && !firstItemHasChildren"
-          class="ui-select-choices dropdown-menu" role="menu">
+     <ul *ngIf="inputMode && optionsOpened && options && options.length > 0 && !firstItemHasChildren"
+          class="ui-select-choices dropdown-menu" role="menu" style="top: 73px;">
         <li *ngFor="let o of options" role="menuitem">
           <div class="ui-select-choices-row"
                [class.active]="isActive(o)"
@@ -149,24 +149,7 @@ let styles = `
         </li>
       </ul>
   
-      <ul *ngIf="optionsOpened && options && options.length > 0 && firstItemHasChildren"
-          class="ui-select-choices dropdown-menu" role="menu">
-        <li *ngFor="let c of options; let index=index" role="menuitem">
-          <div class="divider dropdown-divider" *ngIf="index > 0"></div>
-          <div class="dropdown-header">{{c.text}}</div>
-  
-          <div *ngFor="let o of c.children"
-               class="ui-select-choices-row"
-               [class.active]="isActive(o)"
-               (mouseenter)="selectActive(o)"
-               (click)="selectMatch(o, $event)"
-               [ngClass]="{'active': isActive(o)}">
-            <a href="javascript:void(0)" class="dropdown-item">
-              <div [innerHtml]="sanitize(o.text | highlight:inputValue)"></div>
-            </a>
-          </div>
-        </li>
-      </ul>
+
   </div>
 
   <div tabindex="0"
