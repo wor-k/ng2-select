@@ -10,6 +10,10 @@ npm-debug.log
 .idea
 .vscode
 
+# ignore build and dist for now
+/demo-build
+/coverage
+
 /logs
 
 factories

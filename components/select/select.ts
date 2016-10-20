@@ -112,7 +112,7 @@ let styles = `
     <div [ngClass]="{'ui-disabled': disabled}"></div>
     <div class="ui-select-match">
       <span tabindex="-1"
-          class="btn btn-default btn-primary form-control ui-select-toggle"
+          class="btn btn-primary form-control ui-select-toggle"
           (click)="matchClick($event)"
           style="outline: 0;">
         <span *ngIf="active.length <= 0" class="ui-select-placeholder">{{placeholder}}</span>
@@ -133,7 +133,7 @@ let styles = `
            class="form-control ui-select-search"
            *ngIf="inputMode"
            placeholder="{{active.length <= 0 ? placeholder : ''}}"
-           style="position: absolute; margin-top: 5px;">
+           style="position: absolute; margin-top: 5px; z-index: 1;">
      <!-- options template -->
      <ul *ngIf="inputMode && optionsOpened && options && options.length > 0 && !firstItemHasChildren"
           class="ui-select-choices dropdown-menu" role="menu" style="top: 73px;">
