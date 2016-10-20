@@ -57,6 +57,7 @@ export declare class GenericBehavior extends Behavior implements OptionsBehavior
     constructor(actor: SelectComponent);
     first(): void;
     last(): void;
+    all(): void;
     prev(): void;
     next(): void;
     filter(query: RegExp): void;
@@ -65,6 +66,7 @@ export declare class ChildrenBehavior extends Behavior implements OptionsBehavio
     constructor(actor: SelectComponent);
     first(): void;
     last(): void;
+    all(): void;
     prev(): void;
     next(): void;
     filter(query: RegExp): void;
