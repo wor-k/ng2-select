@@ -313,7 +313,7 @@ export class SelectComponent implements OnInit {
       return;
     }
     // backspace
-    if (!isUpMode && e.keyCode === 8) {
+    if (isUpMode && e.keyCode === 8) {
       let el:any = this.element.nativeElement
         .querySelector('div.ui-select-container > input');
       if (!el.value || el.value.length <= 0) {
@@ -321,6 +321,12 @@ export class SelectComponent implements OnInit {
           this.remove(this.active[this.active.length - 1]);
         }
         e.preventDefault();
+      }
+      if(el.value.length === 0) {
+        this.behavior.all();
+        this.behavior.first();
+        e.preventDefault();
+        return;
       }
     }
     // esc
@@ -589,6 +595,10 @@ export class GenericBehavior extends Behavior implements OptionsBehavior {
     super.ensureHighlightVisible();
   }
 
+  public all():void {
+    this.actor.options = this.actor.itemObjects;
+  }
+
   public prev():void {
     let index = this.actor.options.indexOf(this.actor.activeOption);
     this.actor.activeOption = this.actor
@@ -636,6 +646,10 @@ export class ChildrenBehavior extends Behavior implements OptionsBehavior {
         .children[this.actor.options[this.actor.options.length - 1].children.length - 1];
     this.fillOptionsMap();
     this.ensureHighlightVisible(this.optionsMap);
+  }
+
+  public all():void {
+    this.actor.options = this.actor.itemObjects;
   }
 
   public prev():void {
