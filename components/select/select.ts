@@ -149,7 +149,6 @@ let styles = `
         </li>
       </ul>
   
-
   </div>
 
   <div tabindex="0"
